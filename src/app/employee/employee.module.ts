@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgbModule
+    // NgbModule 
   ],
   bootstrap: [EmployeeListComponent]
 })

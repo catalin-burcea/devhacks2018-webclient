@@ -10,7 +10,6 @@ import { CompanyService } from '../../services/company.service';
 export class CompanyListComponent implements OnInit {
 
   public companyList: Company[];
-  public companyMatrix: Array<Array<Company>>;
 
   constructor(private companyService:CompanyService) { }
 

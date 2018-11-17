@@ -1,3 +1,106 @@
-<p>
-  company-info works!
-</p>
+<div class="container">
+  <h1><span class="badge badge-secondary">{{company?.name}}</span></h1>
+
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview"
+        aria-selected="true">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-salaries-tab" data-toggle="pill" href="#pills-salaries" role="tab" aria-controls="pills-salaries"
+        aria-selected="false">Salaries</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-trainings-tab" data-toggle="pill" href="#pills-trainings" role="tab" aria-controls="pills-trainings"
+        aria-selected="false">Trainings</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-interviews-tab" data-toggle="pill" href="#pills-interviews" role="tab"
+        aria-controls="pills-interviews" aria-selected="false">Interviews</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work" role="tab" aria-controls="pills-work"
+        aria-selected="false">Work Environment</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+
+
+    <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+      <div class="card text-white bg-dark mb-3" style="max-width: 38rem;">
+        <div class="card-header">{{company?.name}} Overview</div>
+        <div class="card-body">
+          <p>
+            <span><b>Company size: </b>{{company?.nrOfEmployees}}</span>
+          </p>
+          <p>
+            <span><b>Location: </b>{{company?.location}}</span>
+
+          </p>
+          <p>
+            <span><b>Tag: </b>{{company?.tag.name}}</span>
+          </p>
+          <hr>
+          <p class="card-text">{{company?.description}}</p>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="tab-pane fade" id="pills-salaries" role="tabpanel" aria-labelledby="pills-salaries-tab">
+      <div *ngFor="let review of reviews">
+          
+          <div *ngIf="review.category == 'Salaries'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+              <div class="card-header">{{review?.user?.name}}</div>
+              <div class="card-body">
+                <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
+                <p class="card-text">{{review?.description}}</p>
+              </div>
+            </div>
+      </div>
+
+     
+    </div>
+
+    <div class="tab-pane fade" id="pills-trainings" role="tabpanel" aria-labelledby="pills-trainings-tab">
+        <div *ngFor="let review of reviews">
+          
+            <div *ngIf="review.category == 'Trainings'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+                <div class="card-header">{{review?.user?.name}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
+                  <p class="card-text">{{review?.description}}</p>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="pills-interviews" role="tabpanel" aria-labelledby="pills-interviews-tab">
+        <div *ngFor="let review of reviews">
+          
+            <div *ngIf="review.category == 'Interviews'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+                <div class="card-header">{{review?.user?.name}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
+                  <p class="card-text">{{review?.description}}</p>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-work" role="tabpanel" aria-labelledby="pills-work-tab">
+        <div *ngFor="let review of reviews">
+          
+            <div *ngIf="review.category == 'Environment'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+                <div class="card-header">{{review?.user?.name}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
+                  <p class="card-text">{{review?.description}}</p>
+                </div>
+              </div>
+        </div>
+
+    </div>
+  </div>
+</div>

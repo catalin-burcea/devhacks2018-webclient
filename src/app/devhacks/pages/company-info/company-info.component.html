@@ -51,55 +51,79 @@
 
     <div class="tab-pane fade" id="pills-salaries" role="tabpanel" aria-labelledby="pills-salaries-tab">
       <div *ngFor="let review of reviews">
-          
-          <div *ngIf="review.category == 'Salaries'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-              <div class="card-header">{{review?.user?.name}}</div>
-              <div class="card-body">
-                <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
-                <p class="card-text">{{review?.description}}</p>
-              </div>
-            </div>
+
+        <div *ngIf="review.category == 'Salaries'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-body">
+            <h5 class="card-title">
+              Rating:
+              <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">★</span>
+              <span *ngFor="let dummy of ' '.repeat(5-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">☆</span>
+            </h5>
+            <p class="card-text">{{review?.description}}</p>
+          </div>
+        </div>
       </div>
 
-     
+
     </div>
 
     <div class="tab-pane fade" id="pills-trainings" role="tabpanel" aria-labelledby="pills-trainings-tab">
-        <div *ngFor="let review of reviews">
-          
-            <div *ngIf="review.category == 'Trainings'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-                <div class="card-header">{{review?.user?.name}}</div>
-                <div class="card-body">
-                  <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
-                  <p class="card-text">{{review?.description}}</p>
-                </div>
-              </div>
+      <div *ngFor="let review of reviews">
+
+        <div *ngIf="review.category == 'Trainings'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-body">
+            <h5 class="card-title">
+              Rating:
+              <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">★</span>
+              <span *ngFor="let dummy of ' '.repeat(5-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">☆</span>
+            </h5>
+            <p class="card-text">{{review?.description}}</p>
+          </div>
         </div>
+      </div>
     </div>
     <div class="tab-pane fade" id="pills-interviews" role="tabpanel" aria-labelledby="pills-interviews-tab">
-        <div *ngFor="let review of reviews">
-          
-            <div *ngIf="review.category == 'Interviews'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-                <div class="card-header">{{review?.user?.name}}</div>
-                <div class="card-body">
-                  <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
-                  <p class="card-text">{{review?.description}}</p>
-                </div>
-              </div>
+      <div *ngFor="let review of reviews">
+
+        <div *ngIf="review.category == 'Interviews'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-body">
+            <h5 class="card-title">
+              Rating:
+              <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">★</span>
+              <span *ngFor="let dummy of ' '.repeat(maxRatingValue-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">☆</span>
+            </h5>
+            <p class="card-text">{{review?.description}}</p>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="tab-pane fade" id="pills-work" role="tabpanel" aria-labelledby="pills-work-tab">
-        <div *ngFor="let review of reviews">
-          
-            <div *ngIf="review.category == 'Environment'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-                <div class="card-header">{{review?.user?.name}}</div>
-                <div class="card-body">
-                  <h5 class="card-title">Rating: {{review?.rating}}/5</h5>
-                  <p class="card-text">{{review?.description}}</p>
-                </div>
-              </div>
+      <div *ngFor="let review of reviews">
+
+        <div *ngIf="review.category == 'Environment'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-body">
+            <h5 class="card-title">
+              Rating:
+              <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">★</span>
+              <span *ngFor="let dummy of ' '.repeat(maxRatingValue-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
+                class="Unicode">☆</span>
+            </h5>
+            <p class="card-text">{{review?.description}}</p>
+          </div>
         </div>
+      </div>
 
     </div>
   </div>

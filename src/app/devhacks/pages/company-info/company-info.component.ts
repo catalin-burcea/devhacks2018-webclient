@@ -13,6 +13,7 @@ export class CompanyInfoComponent implements OnInit {
 
   public company: Company;
   public reviews: Review[];
+  public maxRatingValue = 5;
 
   constructor(private companyService:CompanyService, private route: ActivatedRoute) {
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from 'src/app/shared/entities/Company';
 import { CompanyService } from '../../services/company.service';
+import { Tag } from 'src/app/shared/entities/Tag';
 
 @Component({
   selector: 'app-company-list',
@@ -10,14 +11,22 @@ import { CompanyService } from '../../services/company.service';
 export class CompanyListComponent implements OnInit {
 
   public companyList: Company[];
+  public tags: Tag[];
+  public selectedTag;
+  public selectedSalaryRange = 1;
+  public selectedTrainingRange = 1;
+  public selectedInterviewRange = 1;
+  public selectedEnvRange = 1;
+  public maxRatingValue:number = 10;
 
   constructor(private companyService:CompanyService) { }
 
   ngOnInit() {
-    this.getCompanies();
+    this.getCompanyList();
+    this.getTagList();
   }
 
-  private getCompanies() {
+  private getCompanyList() {
     this.companyService.getCompanyList()
       .subscribe(
         data => {
@@ -29,5 +38,37 @@ export class CompanyListComponent implements OnInit {
         }
       );
   }
+  private getTagList() {
+    this.companyService.getTagList()
+      .subscribe(
+        data => {
+          console.log('tag-list', data);
+          this.tags = data;
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
 
+  public getCompanyRecommendations() {
+    let selectedTagName;
+    for(let i = 0; i < this.tags.length; i++){
+      if(this.tags[i].id == this.selectedTag){
+        selectedTagName = this.tags[i].name;
+        break;
+      }
+
+    }
+    this.companyService.getCompanyRecommendations(this.selectedSalaryRange, this.selectedTrainingRange, this.selectedInterviewRange, this.selectedEnvRange, selectedTagName)
+      .subscribe(
+        data => {
+          console.log('company-recommendations-list', data);
+          this.companyList = data;
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
 }

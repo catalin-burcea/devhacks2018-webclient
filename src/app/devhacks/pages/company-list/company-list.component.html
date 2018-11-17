@@ -1,14 +1,111 @@
 <div class="container">
-  <div class="row" >
+  <div class="row" style="margin-top: 5%">
+    <div class="col-md-6">
+      <!-- Large modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Recommendations</button>
+
+      <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">List personalised companies</h5>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                <div class=col-md-12>
+                  <span>How important is the salary for you?<span class="badge badge-success">1/{{maxRatingValue}}</span>
+                  </span>
+                  <div class="slidecontainer">
+                      <div class="row">
+                          <div class="col-md-11"><input [(ngModel)]="selectedSalaryRange" type="range" min="1" max="{{maxRatingValue}}"
+                              value="3" class="slider" id="mySalaryRange"></div>
+                          <div class="col-md-1"><span class="badge badge-warning" style="padding: 6px;">{{selectedSalaryRange}}</span></div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class=col-md-12>
+                  <span>How important are the trainings and development opportunities for you?<span class="badge badge-success">1/{{maxRatingValue}}</span></span>
+                  <div class="slidecontainer">
+                    <div class="row">
+                      <div class="col-md-11"><input [(ngModel)]="selectedTrainingRange" type="range" min="1" max="{{maxRatingValue}}"
+                          value="3" class="slider" id="myTrainingRange"></div>
+                      <div class="col-md-1"><span class="badge badge-warning" style="padding: 6px;">{{selectedTrainingRange}}</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class=col-md-12>
+                  <span>How important is the interview process for you?<span class="badge badge-success">1/{{maxRatingValue}}</span></span>
+                  <div class="slidecontainer">
+                    <div class="row">
+                      <div class="col-md-11"><input [(ngModel)]="selectedInterviewRange" type="range" min="1" max="{{maxRatingValue}}"
+                          value="2" class="slider" id="myInterviewRange"></div>
+                      <div class="col-md-1"><span class="badge badge-warning" style="padding: 6px;">{{selectedInterviewRange}}</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class=col-md-12>
+                  <span>How important is a friendly work environment for you?<span class="badge badge-success">1/{{maxRatingValue}}</span></span>
+                  <div class="slidecontainer">
+                    <div class="row">
+                      <div class="col-md-11"><input [(ngModel)]="selectedEnvRange" type="range" min="1" max="{{maxRatingValue}}"
+                          value="2" class="slider" id="myInterviewRange"></div>
+                      <div class="col-md-1"><span class="badge badge-warning" style="padding: 6px;">{{selectedEnvRange}}</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class=col-md-12>
+                  <span>Tag</span>
+                  <select [(ngModel)]="selectedTag" class="custom-select" id="inputGroupSelect01">
+                    <option>Choose...</option>
+                    <option *ngFor="let tag of tags" value="{{tag.id}}">{{tag.name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" (click)="getCompanyRecommendations()" class="btn btn-primary">Get recommendations</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <hr>
+  <div class="row">
     <div class="col-md-4" *ngFor="let comp of companyList; let i = index">
       <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header"><a [routerLink]="['/companies/details', comp.id]" >{{comp.name}}</a></div>
+        <div class="card-header"><a [routerLink]="['/companies/details', comp.id]">{{comp.name}}</a></div>
         <div class="card-body">
           <h5 class="card-title">{{comp.nrOfEmployees}} employees</h5>
           <p class="card-text">{{comp.description | slice:0:100 }}{{comp.description.length > 100 ? '...' : ''}}</p>
           <div class="row">
-              <div class="col-md-6"><p class="text-left"><span class="badge badge-success">{{comp.location}}</span></p></div>
-              <div class="col-md-6"><p class="text-right"><span class="badge badge-warning">{{comp.tag.name}}</span></p></div>
+            <div class="col-md-6">
+              <p class="text-left"><span class="badge badge-success">{{comp.location}}</span></p>
+            </div>
+            <div class="col-md-6">
+              <p class="text-right"><span class="badge badge-warning">{{comp.tag.name}}</span></p>
+            </div>
           </div>
         </div>
       </div>

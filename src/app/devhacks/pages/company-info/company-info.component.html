@@ -45,7 +45,6 @@
       </div>
     </div>
 
-
     <div class="tab-pane fade" id="pills-salaries" role="tabpanel" aria-labelledby="pills-salaries-tab">
       <span *ngIf="nrOfSalaries > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{salariesSum/nrOfSalaries | number:'1.2-2'}} ★</span>
             <!-- Large modal -->
@@ -65,7 +64,7 @@
       
                     <div class="row">
                       <div class=col-md-12>
-                          <span>Review <span class="badge badge-success">1/{{maxRatingValue}}</span></span>
+                          <span>Review <span class="badge badge-success">1-{{maxRatingValue}}<span style="font-size: 1.2em; padding: .12em;"class="Unicode">★</span></span></span>
 
                           <div class="slidecontainer">
                               <div class="row">
@@ -137,13 +136,17 @@
             
                           <div class="row">
                             <div class=col-md-12>
-                                <span>Review <span class="badge badge-success">1/{{maxRatingValue}}</span></span>
+                                <span>Review <span class="badge badge-success">1-{{maxRatingValue}}<span style="font-size: 1.2em; padding: .12em;"class="Unicode">★</span></span>   
+                              </span>
       
                                 <div class="slidecontainer">
                                     <div class="row">
                                         <div class="col-md-11"><input [(ngModel)]="trainingRating" type="range" min="1" max="{{maxRatingValue}}"
                                             value="3" class="slider" id="myTrainingRange"></div>
-                                        <div class="col-md-1"><span class="badge badge-warning" style="padding: 6px;">{{trainingRating}}</span></div>
+                                        <div class="col-md-1">
+                                          <span class="badge badge-warning" style="padding: 6px;">{{trainingRating}}</span>
+                                        
+                                        </div>
                                       </div>
                                 </div>
                             </div>

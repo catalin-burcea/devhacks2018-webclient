@@ -89,6 +89,8 @@ export class CompanyListComponent implements OnInit {
           console.log('company-recommendations-list', data);
           this.companyList = data;
           this.closeBtn.nativeElement.click();
+          this.selectedCompanyName = "";
+          this.selectedLocation = "";
         },
         error => {
           console.log("Error", error);

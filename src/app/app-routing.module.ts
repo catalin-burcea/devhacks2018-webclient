@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmployeeListComponent } from './employee/pages/employee-list/employee-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'employees', pathMatch: 'full' },
-  // { path: 'employees', component: EmployeeListComponent },
-  { path: 'employees', loadChildren: './employee/employee.module#EmployeeModule'},
-  { path: '**', redirectTo: 'employees'},
+  { path: '', redirectTo: 'companies', pathMatch: 'full' },
+  { path: 'companies', loadChildren: './devhacks/devhacks.module#DevhacksModule'},
+  { path: '**', redirectTo: 'companies'},
 ];
 
 @NgModule({

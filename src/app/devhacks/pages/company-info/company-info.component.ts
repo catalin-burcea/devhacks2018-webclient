@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { Company } from 'src/app/shared/entities/Company';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ import { Review } from 'src/app/shared/entities/Review';
 })
 export class CompanyInfoComponent implements OnInit {
 
+  public companyId;
   public company: Company;
   public reviews: Review[];
   public maxRatingValue = 5;
@@ -25,6 +26,17 @@ export class CompanyInfoComponent implements OnInit {
   public interviewsSum = 0;
   public environmentsSum = 0;
 
+  public selectedSalaryRange: 0;
+
+  public reviewDesc;
+  public reviewRating;
+
+  public trainingDesc;
+  public trainingRating;
+
+  @ViewChild('closeBtnSalary') closeBtnSalary: ElementRef;
+  @ViewChild('closeBtnTraining') closeBtnTraining: ElementRef;
+
 
   constructor(private companyService:CompanyService, private route: ActivatedRoute) {
 
@@ -32,10 +44,43 @@ export class CompanyInfoComponent implements OnInit {
 
   ngOnInit() {
     let sub = this.route.params.subscribe(params => {
-      let id = +params['id'];
-      this.getCompanyById(id);
-      this.getReviewsByCompany(id);
+      this.companyId = +params['id'];
+      this.getCompanyById(this.companyId);
+      this.getReviewsByCompany(this.companyId);
     });
+    
+  }
+
+  public addSalary() {
+    this.companyService.addReview(this.companyId, this.reviewDesc, this.reviewRating, "Salaries")
+      .subscribe(
+        data => {
+          console.log('added review', data);
+          this.reviews.push(data);
+          this.nrOfSalaries++;
+          this.salariesSum += data.rating;
+          this.closeBtnSalary.nativeElement.click();
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
+
+  public addTraining() {
+    this.companyService.addReview(this.companyId, this.trainingDesc, this.trainingRating, "Trainings")
+      .subscribe(
+        data => {
+          console.log('added training', data);
+          this.reviews.push(data);
+          this.nrOfTrainings++;
+          this.trainingsSum += data.rating;
+          this.closeBtnTraining.nativeElement.click();
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
     
   }
 

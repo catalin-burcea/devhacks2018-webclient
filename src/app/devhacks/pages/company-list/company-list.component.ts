@@ -20,9 +20,7 @@ export class CompanyListComponent implements OnInit {
   public maxRatingValue:number = 10;
 
   @ViewChild('closeBtn') closeBtn: ElementRef;
-
-  // @ViewChild('recModal') public modal: ModalDirective;
-
+  
   constructor(private companyService:CompanyService) { }
 
   ngOnInit() {

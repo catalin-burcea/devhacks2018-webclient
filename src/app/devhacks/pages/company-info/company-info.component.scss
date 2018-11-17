@@ -1,54 +1,34 @@
-.rating {
-    float:left;
-  }
+.slidecontainer {
+    width: 100%;
+}
 
-  /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
-    follow these rules. Every browser that supports :checked also supports :not(), so
-    it doesn’t make the test unnecessarily selective */
-  .rating:not(:checked) > input {
-      position:absolute;
-      top:-9999px;
-      clip:rect(0,0,0,0);
-  }
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
 
-  .rating:not(:checked) > label {
-      float:right;
-      width:1em;
-      /* padding:0 .1em; */
-      overflow:hidden;
-      white-space:nowrap;
-      cursor:pointer;
-      font-size:300%;
-      /* line-height:1.2; */
-      color:#ddd;
-  }
+.slider:hover {
+    opacity: 1;
+}
 
-  .rating:not(:checked) > label:before {
-      content: '★ ';
-  }
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
 
-  .rating > input:checked ~ label {
-      color: dodgerblue;
-      
-  }
-
-  .rating:not(:checked) > label:hover,
-  .rating:not(:checked) > label:hover ~ label {
-      color: dodgerblue;
-      
-  }
-
-  .rating > input:checked + label:hover,
-  .rating > input:checked + label:hover ~ label,
-  .rating > input:checked ~ label:hover,
-  .rating > input:checked ~ label:hover ~ label,
-  .rating > label:hover ~ input:checked ~ label {
-      color: dodgerblue;
-      
-  }
-
-  .rating > label:active {
-      position:relative;
-      top:2px;
-      left:2px;
-  }
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}

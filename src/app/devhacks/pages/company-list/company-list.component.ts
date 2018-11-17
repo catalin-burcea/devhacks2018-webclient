@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Company } from 'src/app/shared/entities/Company';
 import { CompanyService } from '../../services/company.service';
 import { Tag } from 'src/app/shared/entities/Tag';
@@ -18,6 +18,10 @@ export class CompanyListComponent implements OnInit {
   public selectedInterviewRange = 1;
   public selectedEnvRange = 1;
   public maxRatingValue:number = 10;
+
+  @ViewChild('closeBtn') closeBtn: ElementRef;
+
+  // @ViewChild('recModal') public modal: ModalDirective;
 
   constructor(private companyService:CompanyService) { }
 
@@ -65,6 +69,7 @@ export class CompanyListComponent implements OnInit {
         data => {
           console.log('company-recommendations-list', data);
           this.companyList = data;
+          this.closeBtn.nativeElement.click();
         },
         error => {
           console.log("Error", error);

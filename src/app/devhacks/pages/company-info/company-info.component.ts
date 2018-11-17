@@ -15,6 +15,17 @@ export class CompanyInfoComponent implements OnInit {
   public reviews: Review[];
   public maxRatingValue = 5;
 
+  public nrOfSalaries = 0;
+  public nrOfTrainings = 0;
+  public nrOfInterviews = 0;
+  public nrOfEnvironments = 0;
+
+  public salariesSum = 0;
+  public trainingsSum = 0;
+  public interviewsSum = 0;
+  public environmentsSum = 0;
+
+
   constructor(private companyService:CompanyService, private route: ActivatedRoute) {
 
   }
@@ -47,11 +58,39 @@ export class CompanyInfoComponent implements OnInit {
         data => {
           console.log('reviews', data);
           this.reviews = data;
+          this.computeAverages(data);
         },
         error => {
           console.log("Error", error);
         }
       );
+  }
+
+  private computeAverages(data) {
+    for(let i = 0; i < data.length; i++){
+      switch(data[i].category){
+        case 'Salaries': {
+          this.salariesSum += data[i].rating;
+          this.nrOfSalaries++;
+          break;
+        }
+        case 'Trainings': {
+          this.trainingsSum += data[i].rating;
+          this.nrOfTrainings++;
+          break;
+        }
+        case 'Interviews': {
+          this.interviewsSum += data[i].rating;
+          this.nrOfInterviews++;
+          break;
+        }
+        case 'Environment': {
+          this.environmentsSum += data[i].rating;
+          this.nrOfEnvironments++;
+          break;
+        }
+      }
+    }
   }
 
 }

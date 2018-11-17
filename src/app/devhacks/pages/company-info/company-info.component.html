@@ -8,23 +8,23 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" id="pills-salaries-tab" data-toggle="pill" href="#pills-salaries" role="tab" aria-controls="pills-salaries"
-        aria-selected="false">Salaries</a>
+        aria-selected="false">Salaries <span class="badge badge-success"> {{nrOfSalaries}}</span></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="pills-trainings-tab" data-toggle="pill" href="#pills-trainings" role="tab" aria-controls="pills-trainings"
-        aria-selected="false">Trainings</a>
+        aria-selected="false">Trainings <span class="badge badge-success"> {{nrOfTrainings}}</span></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="pills-interviews-tab" data-toggle="pill" href="#pills-interviews" role="tab"
-        aria-controls="pills-interviews" aria-selected="false">Interviews</a>
+        aria-controls="pills-interviews" aria-selected="false">Interviews  <span class="badge badge-success"> {{nrOfInterviews}}</span></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work" role="tab" aria-controls="pills-work"
-        aria-selected="false">Work Environment</a>
+        aria-selected="false">Work Environment  <span class="badge badge-success"> {{nrOfEnvironments}}</span></a>
     </li>
   </ul>
-  <div class="tab-content" id="pills-tabContent">
 
+  <div class="tab-content" id="pills-tabContent">
 
     <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
       <div class="card text-white bg-dark mb-3" style="max-width: 38rem;">
@@ -35,28 +35,25 @@
           </p>
           <p>
             <span><b>Location: </b>{{company?.location}}</span>
-
           </p>
           <p>
-            <span><b>Tag: </b>{{company?.tag.name}}</span>
+            <span><b>Tag: <span class="badge badge-success">  {{company?.tag.name}}</span></b></span>
           </p>
           <hr>
           <p class="card-text">{{company?.description}}</p>
-
         </div>
       </div>
-
     </div>
 
 
     <div class="tab-pane fade" id="pills-salaries" role="tabpanel" aria-labelledby="pills-salaries-tab">
+        <span *ngIf="nrOfSalaries > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{salariesSum/nrOfSalaries | number:'1.2-2'}} ★</span>
       <div *ngFor="let review of reviews">
-
         <div *ngIf="review.category == 'Salaries'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
             <h5 class="card-title">
-              Rating:
+              Rating: 
               <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
                 class="Unicode">★</span>
               <span *ngFor="let dummy of ' '.repeat(5-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
@@ -71,10 +68,11 @@
     </div>
 
     <div class="tab-pane fade" id="pills-trainings" role="tabpanel" aria-labelledby="pills-trainings-tab">
+        <span *ngIf="nrOfTrainings > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{trainingsSum/nrOfTrainings | number:'1.2-2'}} ★</span>
       <div *ngFor="let review of reviews">
 
         <div *ngIf="review.category == 'Trainings'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
             <h5 class="card-title">
               Rating:
@@ -89,13 +87,15 @@
       </div>
     </div>
     <div class="tab-pane fade" id="pills-interviews" role="tabpanel" aria-labelledby="pills-interviews-tab">
+        <span *ngIf="nrOfInterviews > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{interviewsSum/nrOfInterviews | number:'1.2-2'}} ★</span>
+
       <div *ngFor="let review of reviews">
 
         <div *ngIf="review.category == 'Interviews'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
             <h5 class="card-title">
-              Rating:
+              Rating: 
               <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
                 class="Unicode">★</span>
               <span *ngFor="let dummy of ' '.repeat(maxRatingValue-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
@@ -108,10 +108,12 @@
     </div>
 
     <div class="tab-pane fade" id="pills-work" role="tabpanel" aria-labelledby="pills-work-tab">
+        <span *ngIf="nrOfEnvironments > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{environmentsSum/nrOfEnvironments | number:'1.2-2'}} ★</span>
+
       <div *ngFor="let review of reviews">
 
         <div *ngIf="review.category == 'Environment'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
-          <div class="card-header">{{review?.user?.name}}</div>
+          <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
             <h5 class="card-title">
               Rating:

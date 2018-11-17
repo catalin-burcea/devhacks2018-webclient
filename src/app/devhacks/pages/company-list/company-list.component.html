@@ -1,16 +1,17 @@
-<p>
-  company-list works!
-</p>
-
 <div class="container">
-  <div class="row">
-
-  </div>
-  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h5 class="card-title">Secondary card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <div class="row" >
+    <div class="col-md-4" *ngFor="let comp of companyList; let i = index">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{comp.name}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{comp.nrOfEmployees}} employees</h5>
+          <p class="card-text">{{comp.description | slice:0:100 }}{{comp.description.length > 100 ? '...' : ''}}</p>
+          <div class="row">
+              <div class="col-md-6"><p class="text-left"><span class="badge badge-success">{{comp.location}}</span></p></div>
+              <div class="col-md-6"><p class="text-right"><span class="badge badge-warning">{{comp.tag.name}}</span></p></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

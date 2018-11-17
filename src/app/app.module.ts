@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevhacksModule } from './devhacks/devhacks.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DevhacksModule } from './devhacks/devhacks.module';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     // NgbModule,
     AppRoutingModule,
     DevhacksModule

@@ -18,6 +18,10 @@ export class CompanyService {
     return this.http.get<Company[]>(this.baseUrl + "companies");
   }
 
+  public searchCompanies(companyName, location, tag):Observable<Company[]> {
+    return this.http.get<Company[]>(this.baseUrl + "companies" + `?name=${companyName}&location=${location}&tag=${tag}`);
+  }
+
   public getCompanyRecommendations(salary, training, interview, env, tag):Observable<Company[]> {
     return this.http.get<Company[]>(this.baseUrl + "companies/recommendations" + `?salary=${salary}&training=${training}&interview=${interview}&env=${env}&tag=${tag}`);
   }

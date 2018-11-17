@@ -13,6 +13,8 @@ export class CompanyListComponent implements OnInit {
   public companyList: Company[];
   public tags: Tag[];
   public selectedTag;
+  public selectedCompanyName = "";
+  public selectedLocation = "";
   public selectedSalaryRange = 1;
   public selectedTrainingRange = 1;
   public selectedInterviewRange = 1;
@@ -40,6 +42,20 @@ export class CompanyListComponent implements OnInit {
         }
       );
   }
+
+  public searchCompanies() {
+    this.companyService.searchCompanies(this.selectedCompanyName, this.selectedLocation, this.getSelectedTagName())
+      .subscribe(
+        data => {
+          console.log('search company-list', data);
+          this.companyList = data;
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
+
   private getTagList() {
     this.companyService.getTagList()
       .subscribe(
@@ -53,16 +69,21 @@ export class CompanyListComponent implements OnInit {
       );
   }
 
-  public getCompanyRecommendations() {
-    let selectedTagName;
+  getSelectedTagName(){
+    let selectedTagName = "";
     for(let i = 0; i < this.tags.length; i++){
       if(this.tags[i].id == this.selectedTag){
         selectedTagName = this.tags[i].name;
         break;
       }
-
     }
-    this.companyService.getCompanyRecommendations(this.selectedSalaryRange, this.selectedTrainingRange, this.selectedInterviewRange, this.selectedEnvRange, selectedTagName)
+    return selectedTagName;
+  }
+
+  public getCompanyRecommendations() {
+    
+
+    this.companyService.getCompanyRecommendations(this.selectedSalaryRange, this.selectedTrainingRange, this.selectedInterviewRange, this.selectedEnvRange, this.getSelectedTagName())
       .subscribe(
         data => {
           console.log('company-recommendations-list', data);

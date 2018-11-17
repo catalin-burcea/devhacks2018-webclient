@@ -1,5 +1,6 @@
-<div class="container">
-  <div class="row" style="margin-top: 5%">
+<div class="container" style="margin-top: 2%">
+
+  <div class="row">
     <div class="col-md-6">
       <!-- Large modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Recommendations</button>
@@ -90,6 +91,25 @@
     </div>
 
 
+  </div>
+
+  <hr>
+
+  <div class="row" >
+      <div class="col-md-12">
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button (click)="searchCompanies()" class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
+              </div>
+              <input [(ngModel)]="selectedCompanyName" type="text" class="form-control" placeholder="Company name" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <input [(ngModel)]="selectedLocation" type="text" class="form-control" placeholder="Location" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <select [(ngModel)]="selectedTag" class="custom-select" id="inputGroupSelect01">
+                  <option>Choose...</option>
+                  <option *ngFor="let tag of tags" value="{{tag.id}}">{{tag.name}}</option>
+              </select>
+            </div>
+      </div>
+      
   </div>
   <hr>
   <div class="row">

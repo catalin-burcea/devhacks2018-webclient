@@ -30,9 +30,11 @@ export class CompanyInfoComponent implements OnInit {
 
   public reviewDesc;
   public reviewRating;
+  public reviewSubject;
 
   public trainingDesc;
   public trainingRating;
+  public trainingSubject;
   user;
 
   @ViewChild('closeBtnSalary') closeBtnSalary: ElementRef;
@@ -55,7 +57,7 @@ export class CompanyInfoComponent implements OnInit {
   }
 
   public addSalary() {
-    this.companyService.addReview(this.user.id, this.companyId, this.reviewDesc, this.reviewRating, "Salaries")
+    this.companyService.addReview(this.user.id, this.companyId, this.reviewDesc, this.reviewRating, "Salaries", this.reviewSubject)
       .subscribe(
         data => {
           console.log('added review', data);
@@ -71,7 +73,7 @@ export class CompanyInfoComponent implements OnInit {
   }
 
   public addTraining() {
-    this.companyService.addReview(this.user.id, this.companyId, this.trainingDesc, this.trainingRating, "Trainings")
+    this.companyService.addReview(this.user.id, this.companyId, this.trainingDesc, this.trainingRating, "Trainings", this.trainingSubject)
       .subscribe(
         data => {
           console.log('added training', data);

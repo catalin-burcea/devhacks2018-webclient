@@ -39,8 +39,8 @@ export class CompanyService {
     return this.http.get<Tag[]>(this.baseUrl + `tags`);
   }
 
-  public addReview(userId, companyId, desc, rating, category): Observable<Review> {
-    return this.http.post<Review>(this.baseUrl + `companies/${companyId}/reviews?userId=${userId}&description=${desc}&rating=${rating}&category=${category}`, null);
+  public addReview(userId, companyId, desc, rating, category, subject): Observable<Review> {
+    return this.http.post<Review>(this.baseUrl + `companies/${companyId}/reviews?userId=${userId}&description=${desc}&rating=${rating}&category=${category}&subject=${subject}`, null);
   }
 
   public login(username, password): Observable<User> {

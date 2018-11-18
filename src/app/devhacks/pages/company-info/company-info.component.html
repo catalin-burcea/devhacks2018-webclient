@@ -17,11 +17,12 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" id="pills-interviews-tab" data-toggle="pill" href="#pills-interviews" role="tab"
-        aria-controls="pills-interviews" aria-selected="false">Interviews  <span class="badge badge-success"> {{nrOfInterviews}}</span></a>
+        aria-controls="pills-interviews" aria-selected="false">Interviews <span class="badge badge-success">
+          {{nrOfInterviews}}</span></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work" role="tab" aria-controls="pills-work"
-        aria-selected="false">Work Environment  <span class="badge badge-success"> {{nrOfEnvironments}}</span></a>
+        aria-selected="false">Work Environment <span class="badge badge-success"> {{nrOfEnvironments}}</span></a>
     </li>
   </ul>
 
@@ -38,7 +39,7 @@
             <span><b>Location: </b>{{company?.location}}</span>
           </p>
           <p>
-            <span><b>Tag: <span class="badge badge-success">  {{company?.tag.name}}</span></b></span>
+            <span><b>Tag: <span class="badge badge-success"> {{company?.tag.name}}</span></b></span>
           </p>
           <hr>
           <p class="card-text">{{company?.description}}</p>
@@ -47,63 +48,80 @@
     </div>
 
     <div class="tab-pane fade" id="pills-salaries" role="tabpanel" aria-labelledby="pills-salaries-tab">
-      <span *ngIf="nrOfSalaries > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{salariesSum/nrOfSalaries | number:'1.2-2'}} ★</span>
-            <!-- Large modal -->
-            <button *ngIf="user" type="button" class="btn btn-primary" data-toggle="modal" data-target=".add-salary-modal">Add salary review</button>
+      <span *ngIf="nrOfSalaries > 0" style="font-size: 1.6em; padding: .18em;" class="Unicode">{{salariesSum/nrOfSalaries
+        | number:'1.2-2'}} ★</span>
+      <!-- Large modal -->
+      <button *ngIf="user" type="button" class="btn btn-primary" data-toggle="modal" data-target=".add-salary-modal">Add
+        salary review</button>
 
-            <div class="modal add-salary-modal" tabindex="-1" role="dialog">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Add salary review</h5>
-      
-                    <button type="button" #closeBtnSalary class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-      
+      <div class="modal add-salary-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add salary review</h5>
+
+              <button type="button" #closeBtnSalary class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                <div class=col-md-12>
+                  <span>Review <span class="badge badge-success">1-{{maxRatingValue}}<span style="font-size: 1.2em; padding: .12em;"
+                        class="Unicode">★</span></span></span>
+
+                  <div class="slidecontainer">
                     <div class="row">
-                      <div class=col-md-12>
-                          <span>Review <span class="badge badge-success">1-{{maxRatingValue}}<span style="font-size: 1.2em; padding: .12em;"class="Unicode">★</span></span></span>
-
-                          <div class="slidecontainer">
-                              <div class="row">
-                                  <div class="col-md-11"><input [(ngModel)]="reviewRating" type="range" min="1" max="{{maxRatingValue}}"
-                                      value="3" class="slider" id="mySalaryRange"></div>
-                                  <div class="col-md-1"><span class="badge badge-warning" style="padding: 6px;">{{reviewRating}}</span></div>
-                                </div>
-                          </div>
-                      </div>
+                      <div class="col-md-11"><input [(ngModel)]="reviewRating" type="range" min="1" max="{{maxRatingValue}}"
+                          value="3" class="slider" id="mySalaryRange"></div>
+                      <div class="col-md-1"><span class="badge badge-warning" style="padding: 6px;">{{reviewRating}}</span></div>
                     </div>
-                    <div class="row">
-                        <div class=col-md-12>
-                            <span>Description</span>
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text" id="basic-addon1">...</span>
-                                </div>
-                                <textarea [(ngModel)]="reviewDesc" class="form-control" aria-label="With textarea"></textarea>                              </div>
-                        </div>
-                      </div>
-    
-      
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" (click)="addSalary()" class="btn btn-primary">Add salary</button>
                   </div>
                 </div>
               </div>
+              <div class="row">
+                  <div class=col-md-12>
+                    <span>Subject</span>
+  
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">...</span>
+                      </div>
+                      <textarea [(ngModel)]="reviewSubject" class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                  </div>
+                </div>
+              <div class="row">
+                <div class=col-md-12>
+                  <span>Description</span>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">...</span>
+                    </div>
+                    <textarea [(ngModel)]="reviewDesc" class="form-control" aria-label="With textarea"></textarea>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="addSalary()" class="btn btn-primary">Add salary</button>
+              </div>
             </div>
-            </div>
+          </div>
+        </div>
+      </div>
       <hr>
       <div *ngFor="let review of reviews">
         <div *ngIf="review.category == 'Salaries'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
           <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
+              <h4>{{review?.subject}}</h4>
             <h5 class="card-title">
-              Rating: 
+              Rating:
               <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
                 class="Unicode">★</span>
               <span *ngFor="let dummy of ' '.repeat(5-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
@@ -118,67 +136,85 @@
     </div>
 
     <div class="tab-pane fade" id="pills-trainings" role="tabpanel" aria-labelledby="pills-trainings-tab">
-        <span *ngIf="nrOfTrainings > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{trainingsSum/nrOfTrainings | number:'1.2-2'}} ★</span>
-      
-                  <!-- Large modal -->
-                  <button *ngIf="user" type="button" class="btn btn-primary" data-toggle="modal" data-target=".add-training-modal">Add training review</button>
+      <span *ngIf="nrOfTrainings > 0" style="font-size: 1.6em; padding: .18em;" class="Unicode">{{trainingsSum/nrOfTrainings
+        | number:'1.2-2'}} ★</span>
 
-                  <div class="modal add-training-modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-lg" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Add training review</h5>
-            
-                          <button type="button" #closeBtnTraining class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-            
-                          <div class="row">
-                            <div class=col-md-12>
-                                <span>Review <span class="badge badge-success">1-{{maxRatingValue}}<span style="font-size: 1.2em; padding: .12em;"class="Unicode">★</span></span>   
-                              </span>
-      
-                                <div class="slidecontainer">
-                                    <div class="row">
-                                        <div class="col-md-11"><input [(ngModel)]="trainingRating" type="range" min="1" max="{{maxRatingValue}}"
-                                            value="3" class="slider" id="myTrainingRange"></div>
-                                        <div class="col-md-1">
-                                          <span class="badge badge-warning" style="padding: 6px;">{{trainingRating}}</span>
-                                        
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                              <div class=col-md-12>
-                                  <span>Description</span>
-      
-                                  <div class="input-group mb-3">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">...</span>
-                                      </div>
-                                      <textarea [(ngModel)]="trainingDesc" class="form-control" aria-label="With textarea"></textarea>                              </div>
-                              </div>
-                            </div>
-          
-            
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" (click)="addTraining()" class="btn btn-primary">Add training</button>
-                        </div>
+      <!-- Large modal -->
+      <button *ngIf="user" type="button" class="btn btn-primary" data-toggle="modal" data-target=".add-training-modal">Add
+        training review</button>
+
+      <div class="modal add-training-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add training review</h5>
+
+              <button type="button" #closeBtnTraining class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                <div class=col-md-12>
+                  <span>Review <span class="badge badge-success">1-{{maxRatingValue}}<span style="font-size: 1.2em; padding: .12em;"
+                        class="Unicode">★</span></span>
+                  </span>
+
+                  <div class="slidecontainer">
+                    <div class="row">
+                      <div class="col-md-11"><input [(ngModel)]="trainingRating" type="range" min="1" max="{{maxRatingValue}}"
+                          value="3" class="slider" id="myTrainingRange"></div>
+                      <div class="col-md-1">
+                        <span class="badge badge-warning" style="padding: 6px;">{{trainingRating}}</span>
+
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class=col-md-12>
+                  <span>Subject</span>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">...</span>
+                    </div>
+                    <textarea [(ngModel)]="trainingSubject" class="form-control" aria-label="With textarea"></textarea>
                   </div>
-                  <hr>
-        <div *ngFor="let review of reviews">
+                </div>
+              </div>
+              <div class="row">
+                <div class=col-md-12>
+                  <span>Description</span>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">...</span>
+                    </div>
+                    <textarea [(ngModel)]="trainingDesc" class="form-control" aria-label="With textarea"></textarea>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="addTraining()" class="btn btn-primary">Add training</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div *ngFor="let review of reviews">
 
         <div *ngIf="review.category == 'Trainings'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
           <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
+            <h4>{{review?.subject}}</h4>
+            
             <h5 class="card-title">
               Rating:
               <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
@@ -192,7 +228,8 @@
       </div>
     </div>
     <div class="tab-pane fade" id="pills-interviews" role="tabpanel" aria-labelledby="pills-interviews-tab">
-        <span *ngIf="nrOfInterviews > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{interviewsSum/nrOfInterviews | number:'1.2-2'}} ★</span>
+      <span *ngIf="nrOfInterviews > 0" style="font-size: 1.6em; padding: .18em;" class="Unicode">{{interviewsSum/nrOfInterviews
+        | number:'1.2-2'}} ★</span>
 
       <div *ngFor="let review of reviews">
 
@@ -200,7 +237,7 @@
           <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
             <h5 class="card-title">
-              Rating: 
+              Rating:
               <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
                 class="Unicode">★</span>
               <span *ngFor="let dummy of ' '.repeat(maxRatingValue-review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
@@ -213,7 +250,8 @@
     </div>
 
     <div class="tab-pane fade" id="pills-work" role="tabpanel" aria-labelledby="pills-work-tab">
-        <span *ngIf="nrOfEnvironments > 0" style="font-size: 1.6em; padding: .18em;"class="Unicode">{{environmentsSum/nrOfEnvironments | number:'1.2-2'}} ★</span>
+      <span *ngIf="nrOfEnvironments > 0" style="font-size: 1.6em; padding: .18em;" class="Unicode">{{environmentsSum/nrOfEnvironments
+        | number:'1.2-2'}} ★</span>
 
       <div *ngFor="let review of reviews">
 

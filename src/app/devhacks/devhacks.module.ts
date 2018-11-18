@@ -4,9 +4,10 @@ import { CompanyListComponent } from './pages/company-list/company-list.componen
 import { DevhacksRoutingModule } from './devhacks-routing.module';
 import { CompanyInfoComponent } from './pages/company-info/company-info.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
-  declarations: [CompanyListComponent, CompanyInfoComponent],
+  declarations: [CompanyListComponent, CompanyInfoComponent, LoginComponent],
   imports: [
     CommonModule,
     FormsModule,

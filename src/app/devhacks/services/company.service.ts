@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Review } from 'src/app/shared/entities/Review';
 import { Tag } from 'src/app/shared/entities/Tag';
+import { User } from 'src/app/shared/entities/User';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,10 @@ export class CompanyService {
 
   public addReview(companyId, desc, rating, category): Observable<Review> {
     return this.http.post<Review>(this.baseUrl + `companies/${companyId}/reviews?description=${desc}&rating=${rating}&category=${category}`, null);
+  }
+
+  public login(username, password): Observable<User> {
+    return this.http.post<User>(this.baseUrl + `login?username=${username}&password=${password}`, null);
   }
 
 }

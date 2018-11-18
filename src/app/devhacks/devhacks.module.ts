@@ -5,9 +5,10 @@ import { DevhacksRoutingModule } from './devhacks-routing.module';
 import { CompanyInfoComponent } from './pages/company-info/company-info.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 @NgModule({
-  declarations: [CompanyListComponent, CompanyInfoComponent, LoginComponent],
+  declarations: [CompanyListComponent, CompanyInfoComponent, LoginComponent, MenuComponent],
   imports: [
     CommonModule,
     FormsModule,

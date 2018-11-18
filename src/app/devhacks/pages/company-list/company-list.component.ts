@@ -22,12 +22,15 @@ export class CompanyListComponent implements OnInit {
   public maxRatingValue:number = 10;
 
   @ViewChild('closeBtn') closeBtn: ElementRef;
+
+  user;
   
   constructor(private companyService:CompanyService) { }
 
   ngOnInit() {
     this.getCompanyList();
     this.getTagList();
+    this.user = JSON.parse(window.localStorage.getItem('user'));
   }
 
   private getCompanyList() {

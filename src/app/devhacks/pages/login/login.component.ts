@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         data => {
           console.log('login user', data);
           this.user = data;
+          this.saveUserData();
           this.router.navigateByUrl('/companies/list');
         },
         error => {
@@ -34,6 +35,10 @@ export class LoginComponent implements OnInit {
           this.wrongCredentialsMessage = 'Wrong username or password';
         }
       );
+  }
+
+  saveUserData() {
+    window.localStorage.setItem('user', JSON.stringify(this.user));
   }
 
 }

@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log('login user', data);
+
           this.user = data;
           this.saveUserData();
           this.router.navigateByUrl('/companies/list');

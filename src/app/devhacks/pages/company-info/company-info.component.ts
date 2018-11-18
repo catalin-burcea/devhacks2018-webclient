@@ -33,6 +33,7 @@ export class CompanyInfoComponent implements OnInit {
 
   public trainingDesc;
   public trainingRating;
+  user;
 
   @ViewChild('closeBtnSalary') closeBtnSalary: ElementRef;
   @ViewChild('closeBtnTraining') closeBtnTraining: ElementRef;
@@ -47,12 +48,14 @@ export class CompanyInfoComponent implements OnInit {
       this.companyId = +params['id'];
       this.getCompanyById(this.companyId);
       this.getReviewsByCompany(this.companyId);
+      this.user = JSON.parse(window.localStorage.getItem('user'));
+
     });
     
   }
 
   public addSalary() {
-    this.companyService.addReview(this.companyId, this.reviewDesc, this.reviewRating, "Salaries")
+    this.companyService.addReview(this.user.id, this.companyId, this.reviewDesc, this.reviewRating, "Salaries")
       .subscribe(
         data => {
           console.log('added review', data);
@@ -68,7 +71,7 @@ export class CompanyInfoComponent implements OnInit {
   }
 
   public addTraining() {
-    this.companyService.addReview(this.companyId, this.trainingDesc, this.trainingRating, "Trainings")
+    this.companyService.addReview(this.user.id, this.companyId, this.trainingDesc, this.trainingRating, "Trainings")
       .subscribe(
         data => {
           console.log('added training', data);

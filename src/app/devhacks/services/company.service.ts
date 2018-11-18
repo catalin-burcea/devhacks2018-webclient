@@ -31,7 +31,9 @@ export class CompanyService {
   public getCompanyById(companyId):Observable<Company> {
     return this.http.get<Company>(this.baseUrl + `companies/${companyId}`);
   }
-
+  public getCompaniesByTag(tag):Observable<Company[]> {
+    return this.http.get<Company[]>(this.baseUrl + `companies?tag=${tag}`);
+  }
   public getReviewsByCompany(companyId):Observable<Review[]> {
     return this.http.get<Review[]>(this.baseUrl + `companies/${companyId}/reviews`);
   }

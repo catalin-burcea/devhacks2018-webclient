@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
 
   saveUserData() {
     window.localStorage.setItem('user', JSON.stringify(this.user));
+    var tagViews = new Map<String, Number>();
+    window.localStorage.setItem('tagViews', JSON.stringify(tagViews));
   }
 
 }

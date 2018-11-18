@@ -2,33 +2,39 @@
 <div class="container" style="margin-top:5%">
   <h1><span class="badge badge-secondary">{{company?.name}}</span></h1>
 
-  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview"
-        aria-selected="true">Overview</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-jobs-tab" data-toggle="pill" href="#pills-jobs" role="tab" aria-controls="pills-jobs"
-        aria-selected="true">Jobs</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-salaries-tab" data-toggle="pill" href="#pills-salaries" role="tab" aria-controls="pills-salaries"
-        aria-selected="false">Salaries <span class="badge badge-success"> {{nrOfSalaries}}</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-trainings-tab" data-toggle="pill" href="#pills-trainings" role="tab" aria-controls="pills-trainings"
-        aria-selected="false">Trainings <span class="badge badge-success"> {{nrOfTrainings}}</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-interviews-tab" data-toggle="pill" href="#pills-interviews" role="tab"
-        aria-controls="pills-interviews" aria-selected="false">Interviews <span class="badge badge-success">
-          {{nrOfInterviews}}</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work" role="tab" aria-controls="pills-work"
-        aria-selected="false">Work Environment <span class="badge badge-success"> {{nrOfEnvironments}}</span></a>
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-md-8">
+       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview"
+          aria-selected="true">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-jobs-tab" data-toggle="pill" href="#pills-jobs" role="tab" aria-controls="pills-jobs"
+          aria-selected="true">Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-salaries-tab" data-toggle="pill" href="#pills-salaries" role="tab" aria-controls="pills-salaries"
+          aria-selected="false">Salaries <span class="badge badge-success"> {{nrOfSalaries}}</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-trainings-tab" data-toggle="pill" href="#pills-trainings" role="tab" aria-controls="pills-trainings"
+          aria-selected="false">Trainings <span class="badge badge-success"> {{nrOfTrainings}}</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-interviews-tab" data-toggle="pill" href="#pills-interviews" role="tab"
+          aria-controls="pills-interviews" aria-selected="false">Interviews <span class="badge badge-success">
+            {{nrOfInterviews}}</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work" role="tab" aria-controls="pills-work"
+          aria-selected="false">Work Environment <span class="badge badge-success"> {{nrOfEnvironments}}</span></a>
+      </li>
+    </ul>
+  </div>
+
+  </div>
+  
 
   <div class="tab-content" id="pills-tabContent">
 
@@ -294,5 +300,31 @@
       </div>
 
     </div>
+
+    
+    <h2>Recommended companies:</h2>
+    <div class="row recommended-companies"> 
+      <div class="col-md-4" *ngFor="let comp of recommendedCompanies">
+          <div >
+              <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                  <div class="card-header"><a [routerLink]="['/companies/details', comp.id]">{{comp.name}}</a></div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{comp.nrOfEmployees}} employees</h5>
+                    <p class="card-text">{{comp.description | slice:0:100 }}{{comp.description.length > 100 ? '...' : ''}}</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p class="text-left"><span class="badge badge-success">{{comp.location}}</span></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p class="text-right"><span class="badge badge-warning">{{comp.tag.name}}</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+ 
+    </div>
+
   </div>
 </div>

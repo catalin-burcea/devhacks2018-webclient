@@ -32,3 +32,9 @@
     background: #4CAF50;
     cursor: pointer;
 }
+
+.recommended-companies a, .recommended-companies a:link, .recommended-companies a:hover, .recommended-companies a:active {
+    color: rgb(238, 166, 10);
+    text-decoration: none;
+  }
+

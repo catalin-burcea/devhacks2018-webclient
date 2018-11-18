@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit {
 
   logout(){
     window.localStorage.setItem('user', null);
+    window.localStorage.setItem('tagViews', null);
     this.router.navigateByUrl('/login');
   }
 

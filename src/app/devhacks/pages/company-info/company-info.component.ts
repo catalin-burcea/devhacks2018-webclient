@@ -16,6 +16,7 @@ export class CompanyInfoComponent implements OnInit {
   public company: Company;
   public reviews: Review[];
   public jobs: Job[];
+  public recommendedCompanies: Company[];
   public maxRatingValue = 5;
 
   public nrOfSalaries = 0;
@@ -38,6 +39,8 @@ export class CompanyInfoComponent implements OnInit {
   public trainingRating;
   public trainingSubject;
   user;
+
+  tagViews = [];
 
   @ViewChild('closeBtnSalary') closeBtnSalary: ElementRef;
   @ViewChild('closeBtnTraining') closeBtnTraining: ElementRef;
@@ -97,11 +100,51 @@ export class CompanyInfoComponent implements OnInit {
         data => {
           console.log('company', data);
           this.company = data;
+          this.tagViews = JSON.parse(window.localStorage.getItem('tagViews'));
+          if(this.tagViews[this.company.tag.name] == null || this.tagViews[this.company.tag.name] == ''){
+            this.tagViews[this.company.tag.name] = 0;
+          }
+          this.tagViews[this.company.tag.name]++;
+          console.log('this.company.tag.name', this.company.tag.name);
+          window.localStorage.setItem('tagViews', JSON.stringify(this.tagViews));
+          console.log("this.tagViews[this.company.tag.name]" + this.tagViews[this.company.tag.name]);
+          let tag = this.getTopTag();
+          if(tag != null && tag != ''){
+            this.getCompaniesByTag(tag);
+          }
         },
         error => {
           console.log("Error", error);
         }
       );
+  }
+
+  private getCompaniesByTag(tag) {
+    this.companyService.getCompaniesByTag(tag)
+      .subscribe(
+        data => {
+          console.log('recommendedCompanies', data);
+          this.recommendedCompanies = data;
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
+
+  private getTopTag() {
+    let max = -1;
+    let tag = '';
+    Object.keys(this.tagViews).forEach( (key) => {
+      console.log(key, "   ", this.tagViews[key]);
+      if (this.tagViews[key] > max){
+        max = this.tagViews[key];
+        tag = key;
+      }
+    }
+    );
+    return tag;
+
   }
 
   private getReviewsByCompany(companyId) {

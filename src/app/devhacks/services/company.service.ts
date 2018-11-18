@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Review } from 'src/app/shared/entities/Review';
 import { Tag } from 'src/app/shared/entities/Tag';
 import { User } from 'src/app/shared/entities/User';
+import { Job } from 'src/app/shared/entities/Job';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class CompanyService {
 
   public getReviewsByCompany(companyId):Observable<Review[]> {
     return this.http.get<Review[]>(this.baseUrl + `companies/${companyId}/reviews`);
+  }
+
+  public getJobsByCompany(companyId):Observable<Job[]> {
+    return this.http.get<Job[]>(this.baseUrl + `companies/${companyId}/jobs`);
   }
 
   public getTagList():Observable<Tag[]> {

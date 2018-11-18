@@ -8,6 +8,10 @@
         aria-selected="true">Overview</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" id="pills-jobs-tab" data-toggle="pill" href="#pills-jobs" role="tab" aria-controls="pills-jobs"
+        aria-selected="true">Jobs</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" id="pills-salaries-tab" data-toggle="pill" href="#pills-salaries" role="tab" aria-controls="pills-salaries"
         aria-selected="false">Salaries <span class="badge badge-success"> {{nrOfSalaries}}</span></a>
     </li>
@@ -81,17 +85,17 @@
                 </div>
               </div>
               <div class="row">
-                  <div class=col-md-12>
-                    <span>Subject</span>
-  
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">...</span>
-                      </div>
-                      <textarea [(ngModel)]="reviewSubject" class="form-control" aria-label="With textarea"></textarea>
+                <div class=col-md-12>
+                  <span>Subject</span>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">...</span>
                     </div>
+                    <textarea [(ngModel)]="reviewSubject" class="form-control" aria-label="With textarea"></textarea>
                   </div>
                 </div>
+              </div>
               <div class="row">
                 <div class=col-md-12>
                   <span>Description</span>
@@ -119,7 +123,7 @@
         <div *ngIf="review.category == 'Salaries'" class="card text-white bg-dark mb-3" style="max-width: 40rem;">
           <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
-              <h4>{{review?.subject}}</h4>
+            <h4>{{review?.subject}}</h4>
             <h5 class="card-title">
               Rating:
               <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"
@@ -131,9 +135,28 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <div class="tab-pane fade" id="pills-jobs" role="tabpanel" aria-labelledby="pills-jobs-tab">
+      <div *ngFor="let job of jobs">
+        <div class="card text-white bg-dark mb-3" style="max-width: 40rem;">
+          <div class="card-header"><span class="badge badge-warning"></span></div>
+          <div class="card-body">
+            <h5 class="card-title">
+              {{job.title}}
+            </h5>
+            <p class="card-text">
+              Salary: <span class="badge badge-warning">{{job.salary}} RON</span>
+            </p>
+            <p class="card-text">
+              {{job.description}}
+            </p>
+          </div>
+        </div>
+      </div>
 
     </div>
+
 
     <div class="tab-pane fade" id="pills-trainings" role="tabpanel" aria-labelledby="pills-trainings-tab">
       <span *ngIf="nrOfTrainings > 0" style="font-size: 1.6em; padding: .18em;" class="Unicode">{{trainingsSum/nrOfTrainings
@@ -214,7 +237,7 @@
           <div class="card-header"><span class="badge badge-warning">{{review?.user?.name}}</span></div>
           <div class="card-body">
             <h4>{{review?.subject}}</h4>
-            
+
             <h5 class="card-title">
               Rating:
               <span *ngFor="let dummy of ' '.repeat(review?.rating).split(''), let x = index" style="font-size: 1.6em; padding: .18em;"

@@ -3,6 +3,7 @@ import { CompanyService } from '../../services/company.service';
 import { Company } from 'src/app/shared/entities/Company';
 import { ActivatedRoute } from '@angular/router';
 import { Review } from 'src/app/shared/entities/Review';
+import { Job } from 'src/app/shared/entities/Job';
 
 @Component({
   selector: 'app-company-info',
@@ -14,6 +15,7 @@ export class CompanyInfoComponent implements OnInit {
   public companyId;
   public company: Company;
   public reviews: Review[];
+  public jobs: Job[];
   public maxRatingValue = 5;
 
   public nrOfSalaries = 0;
@@ -51,7 +53,7 @@ export class CompanyInfoComponent implements OnInit {
       this.getCompanyById(this.companyId);
       this.getReviewsByCompany(this.companyId);
       this.user = JSON.parse(window.localStorage.getItem('user'));
-
+      this.getJobsByCompany(this.companyId);
     });
     
   }
@@ -109,6 +111,19 @@ export class CompanyInfoComponent implements OnInit {
           console.log('reviews', data);
           this.reviews = data;
           this.computeAverages(data);
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
+
+  private getJobsByCompany(companyId) {
+    this.companyService.getJobsByCompany(companyId)
+      .subscribe(
+        data => {
+          console.log('jobs', data);
+          this.jobs = data;
         },
         error => {
           console.log("Error", error);
